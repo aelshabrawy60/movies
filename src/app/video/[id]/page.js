@@ -1,6 +1,6 @@
 "use client";
 import Footer from '@/components/Footer';
-import Navbar from '@/components/navbar';
+import Navbar from '../../../components/Navbar'
 import React, { useState } from 'react';
 import { FiPlay } from 'react-icons/fi';
 

@@ -1,0 +1,56 @@
+{
+  "films": [
+    {
+      "id": 4,
+      "title": "52 Blue",
+      "year": 2025,
+      "genres": ["Drama"],
+      "description": "After 12 years of enduring his father's isolating control on a remote island home in Kochi, India, with his mother's support and lessons, Ashish breaks free. Embarking on a journey to meet his idol, Messi, at the World Cup in Qatar 2022, leading him to face himself and the world for the first time.",
+      "thumbnail": "/52blue-three.webp",
+      "listThumbnail": "/52blue-three.webp",
+      "duration": "1h 47m",
+      "director": "Ali El Arabi",
+      "cast": ["Yadav Shashidhar", "Adil Hussain", "Neha Dhupia"],
+      "fullDescription": "After 12 years of enduring his father's isolating control on a remote island home in Kochi, India, with his mother's support and lessons, Ashish breaks free. Embarking on a journey to meet his idol, Messi, at the World Cup in Qatar 2022, leading him to face himself and the world for the first time."
+    },
+    {
+      "id": 2,
+      "title": "Arze",
+      "year": 2024,
+      "genres": ["Comedy", "Drama"],
+      "description": "To find her stolen scooter, Arze drags her rebellious son on an adventurous journey across Beirut, navigating the city's web of sectarianism with wit and courage while revealing to her son a long- overdue family secret.",
+      "thumbnail": "/arze.jpg",
+      "listThumbnail": "/arze.jpg",
+      "duration": "1h 30m",
+      "director": "Mira Shaib",
+      "cast": ["Diamand Bou Abboud", "Belal Alhamwi", "Betty Taoutel"],
+      "fullDescription": "To find her stolen scooter, Arze drags her rebellious son on an adventurous journey across Beirut, navigating the city's web of sectarianism with wit and courage while revealing to her son a long- overdue family secret."
+    },
+    {
+      "id": 3,
+      "title": "Goodbye Julia",
+      "year": 2023,
+      "genres": ["Drama"],
+      "description": "Wracked by guilt after covering up a murder, Mona — a northern Sudanese retired singer in a tense marriage — tries to make amends by taking in the deceased's southern Sudanese widow, Julia, and her son, Daniel, into her home. Unable to confess her transgressions to Julia, Mona decides to leave the past behind and adjust to a new status quo, unaware that the country's turmoil may find its way into her home and put her face with her sins.",
+      "thumbnail": "/julia-four.webp",
+      "listThumbnail": "/julia-four.webp",
+      "duration": "2h",
+      "director": "Mohamed Kordofani",
+      "cast": ["Tom Hardy", "Zoe Saldana", "John David Washington"],
+      "fullDescription": "Wracked by guilt after covering up a murder, Mona — a northern Sudanese retired singer in a tense marriage — tries to make amends by taking in the deceased's southern Sudanese widow, Julia, and her son, Daniel, into her home. Unable to confess her transgressions to Julia, Mona decides to leave the past behind and adjust to a new status quo, unaware that the country's turmoil may find its way into her home and put her face to face with her sins."
+    },
+    {
+      "id": 1,
+      "title": "Captains of Zaatari",
+      "year": 2021,
+      "genres": ["Documentary", "Sport"],
+      "description": "Two best friends trapped in the Zaatari Refugee Camp in Jordan have an undying dream of becoming professional football players. When a world-renowned sports academy visits the camp, the boys finally have a chance to make this dream come true.",
+      "thumbnail": "/cz-two.jpg",
+      "listThumbnail": "/cz-two.jpg",
+      "duration": "1h 15m",
+      "director": "Ali El Arabi",
+      "cast": ["Fawzi Qatleesh", "Mahmoud Dagher"],
+      "fullDescription": "Two best friends trapped in the Zaatari Refugee Camp in Jordan have an undying dream of becoming professional football players. When a world-renowned sports academy visits the camp, the boys finally have a chance to make this dream come true."
+    }
+  ]
+}

@@ -5,9 +5,10 @@ import MouseScroll from './MouseScroll'
 
 function Hero() {
   const images = [
-    '/show1.jpg',
-    '/490731.jpg',
-    '/arze-main.webp'
+    '/arze.jpg',
+    '/cz-two.jpg',
+    '/julia-four.webp',
+    '/52blue-three.webp'
   ];
   
   const [currentIndex, setCurrentIndex] = useState(0);

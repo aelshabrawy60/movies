@@ -1,11 +1,26 @@
 "use client"
 import React, { useState } from 'react';
-import { FaChartBar } from "react-icons/fa6";
-import { FaPlay, FaEye } from "react-icons/fa6";
+import { FaChartBar, FaPen, FaTrashAlt, FaEye, FaEllipsisV } from "react-icons/fa";
 
-function VideoCard({ videoData, onPlay = () => {}, onViewStats = () => {} }) {
+function VideoCard({ videoData, onPlay = () => {}, onViewStats = () => {}, onEdit = () => {}, onDelete = () => {} }) {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  // Close menu when clicking outside
+  const closeMenu = (e) => {
+    if (isMenuOpen) {
+      setIsMenuOpen(false);
+    }
+  };
+
+  React.useEffect(() => {
+    document.addEventListener('click', closeMenu);
+    return () => {
+      document.removeEventListener('click', closeMenu);
+    };
+  }, [isMenuOpen]);
+
   return (
-    <div className="flex flex-col gap-3 cursor-pointer group">
+    <div className="flex flex-col gap-3 cursor-pointer group" onClick={onPlay}>
       {/* Video thumbnail container */}
       <div className="relative rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
         {/* Thumbnail */}
@@ -16,35 +31,58 @@ function VideoCard({ videoData, onPlay = () => {}, onViewStats = () => {} }) {
             className="w-full h-full object-cover"
           />
           
-          {/* Play and Stats overlay on hover */}
-          <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-            <div className="flex gap-4">
-
-                {/* Stats button */}
-              <div 
+          {/* More options menu - Always visible */}
+          <div className="absolute top-3 right-3 z-10">
+            <div className="relative">
+              <button
                 onClick={(e) => {
                   e.stopPropagation();
-                  onViewStats();
+                  setIsMenuOpen(!isMenuOpen);
                 }}
-                className="w-14 h-14 rounded-full bg-purple-600 flex items-center justify-center transform scale-90 group-hover:scale-100 transition-transform duration-300"
+                className="w-10 h-10 rounded-full bg-black/50 hover:bg-black/70 flex items-center justify-center transition-colors duration-200 cursor-pointer"
               >
-                <FaChartBar className="text-white" size={18} />
+                <FaEllipsisV className="text-white" size={16} />
+              </button>
+                
+              {/* Click-based dropdown menu */}
+              <div className={`absolute right-0 top-12 bg-white rounded-lg shadow-xl py-2 ${isMenuOpen ? 'block' : 'hidden'} min-w-[140px] z-20`}>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onViewStats();
+                      setIsMenuOpen(false);
+                    }}
+                    className="w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center gap-2"
+                  >
+                    <FaChartBar size={14} />
+                    View Stats
+                  </button>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onEdit();
+                      setIsMenuOpen(false);
+                    }}
+                    className="w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center gap-2"
+                  >
+                    <FaPen size={14} />
+                    Edit Video
+                  </button>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onDelete();
+                      setIsMenuOpen(false);
+                    }}
+                    className="w-full px-4 py-2 text-sm text-red-600 hover:bg-gray-100 flex items-center gap-2"
+                  >
+                    <FaTrashAlt size={14} />
+                    Delete Video
+                  </button>
               </div>
-              
-              {/* Play button */}
-              <div 
-                onClick={(e) => {
-                  e.stopPropagation();
-                  onPlay();
-                }} 
-                className="w-14 h-14 rounded-full bg-blue-600 flex items-center justify-center transform scale-90 group-hover:scale-100 transition-transform duration-300"
-              >
-                <FaPlay className="text-white ml-1" size={18} />
-              </div>
-              
-              
             </div>
           </div>
+
           
           {/* Duration badge */}
           <div className="absolute bottom-2 right-2 bg-black/70 text-white text-xs px-2 py-1 rounded">

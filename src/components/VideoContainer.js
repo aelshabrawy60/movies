@@ -49,9 +49,11 @@ export function VideoContainer({ video, verifyPassword }) {
         </div>
         
         {/* Video Description (Desktop) */}
-        <div className="mt-3 md:mt-5 p-3 p-md-6 sm:p-4 bg-gray-800/50 rounded-lg hidden md:block">
-          <div className="text-sm sm:text-base text-gray-200">
-            <p>{video.description}</p>
+        <div className="mt-3 md:mt-5">
+          <div className="p-3 p-md-6 sm:p-4 bg-gray-800/50 rounded-lg hidden md:block">
+            <div className="text-sm sm:text-base text-gray-200">
+              <p>{video.description}</p>
+            </div>
           </div>
         </div>
       </>

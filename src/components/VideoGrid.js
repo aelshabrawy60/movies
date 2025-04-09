@@ -17,7 +17,7 @@ export default function VideoGrid() {
       description: 'Learn how to build modern UIs with Tailwind CSS. This comprehensive tutorial covers the basics to advanced concepts.',
       views: 3456,
       duration: '12:45',
-      thumbnail: '/11-Fight-Club-MSDFICL_EC006-H-2023.jpg',
+      thumbnail: '/arze.webp',
       password: 'video123'
     },
     {
@@ -27,7 +27,7 @@ export default function VideoGrid() {
       description: 'Deep dive into React Hooks. Understanding useState, useEffect, and custom hooks with practical examples.',
       views: 2100,
       duration: '8:15',
-      thumbnail: '/arze-main.webp',
+      thumbnail: '/cz-two.jpg',
       password: 'hooks123'
     },
     {
@@ -37,7 +37,7 @@ export default function VideoGrid() {
       description: 'Step-by-step guide to creating a professional dashboard interface using modern web technologies.',
       views: 1876,
       duration: '15:20',
-      thumbnail: '/show1.jpg',
+      thumbnail: '/julia-four.webp',
       password: 'dash123'
     },
     {
@@ -47,7 +47,7 @@ export default function VideoGrid() {
       description: 'Learn the best practices for integrating APIs in your web applications for optimal performance.',
       views: 980,
       duration: '10:10',
-      thumbnail: '/490731.jpg',
+      thumbnail: '/52blue-three.webp',
       password: 'api123'
     },
     {
@@ -57,7 +57,7 @@ export default function VideoGrid() {
       description: 'Learn how to build modern UIs with Tailwind CSS. This comprehensive tutorial covers the basics to advanced concepts.',
       views: 3456,
       duration: '12:45',
-      thumbnail: '/11-Fight-Club-MSDFICL_EC006-H-2023.jpg',
+      thumbnail: '/julia-four.webp',
       password: 'video123'
     },
     {
@@ -67,7 +67,7 @@ export default function VideoGrid() {
       description: 'Deep dive into React Hooks. Understanding useState, useEffect, and custom hooks with practical examples.',
       views: 2100,
       duration: '8:15',
-      thumbnail: '/arze-main.webp',
+      thumbnail: '/cz-two.jpg',
       password: 'hooks123'
     },
     {
@@ -77,7 +77,7 @@ export default function VideoGrid() {
       description: 'Step-by-step guide to creating a professional dashboard interface using modern web technologies.',
       views: 1876,
       duration: '15:20',
-      thumbnail: '/show1.jpg',
+      thumbnail: '/arze.webp',
       password: 'dash123'
     },
     {
@@ -87,7 +87,7 @@ export default function VideoGrid() {
       description: 'Learn the best practices for integrating APIs in your web applications for optimal performance.',
       views: 980,
       duration: '10:10',
-      thumbnail: '/490731.jpg',
+      thumbnail: '/arze.webp',
       password: 'api123'
     }
   ];

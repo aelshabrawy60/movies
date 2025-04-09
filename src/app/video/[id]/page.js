@@ -8,7 +8,7 @@ const video = {
     title: "Trianto appelomng termanati",
     creator: "Fight Club",
     views: "1.3M",
-    thumbnail: "/11-Fight-Club-MSDFICL_EC006-H-2023.jpg",
+    thumbnail: "/arze.webp",
     youtubeId: "chyRpj-971o", 
     duration: "4:05",
     description: "Experience the tranquil sounds of rain falling in a dense forest. Perfect for relaxation, meditation, or as a soothing background while you work or study. Recorded in the pristine wilderness of the Pacific Northwest."

@@ -29,7 +29,6 @@ export default function MenuButton() {
     { title: "Home", href: "/" },
     { title: "Films", href: "/film" },
     { title: "About us", href: "/about" },
-    { title: "Contact", href: "/contact" }
   ];
 
   return (
@@ -122,11 +121,10 @@ export default function MenuButton() {
                   >
                     <a 
                       href={item.href} 
-                      className="text-white no-underline text-4xl font-light tracking-wide hover:text-gray-300 transition-colors duration-300 block py-2 relative group"
+                      className="text-white no-underline text-4xl font-light tracking-wide hover:text-gray-400 transition-colors duration-300 block py-2"
                       onClick={toggleMenu}
                     >
                       {item.title}
-                      <span className="absolute left-1/2 bottom-0 w-0 h-0.5 bg-white transform -translate-x-1/2 transition-all duration-300 group-hover:w-24"></span>
                     </a>
                   </motion.li>
                 ))}

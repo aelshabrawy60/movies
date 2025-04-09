@@ -2,14 +2,12 @@
 
 import React, { useState, useEffect } from 'react'
 import MouseScroll from './MouseScroll'
+import Slider from './Slider';
+import films from '../data/films.json';
 
 function Hero() {
-  const images = [
-    '/arze.jpg',
-    '/cz-two.jpg',
-    '/julia-four.webp',
-    '/52blue-three.webp'
-  ];
+  const sortedFilms = [...films.films]
+  const images = sortedFilms.map(film => film.thumbnail);
   
   const [currentIndex, setCurrentIndex] = useState(0);
   const [activeIndices, setActiveIndices] = useState([0]); // Track all visible images
@@ -35,12 +33,41 @@ function Hero() {
     return () => clearInterval(imageInterval);
   }, [currentIndex, images.length]);
   
+
+  function slideTheImage(direction){
+    // Ensure the index wraps around correctly in both directions
+    const nextIndex = (currentIndex + direction + images.length) % images.length;
+    setCurrentIndex(nextIndex);
+    
+    // Add the new image to active indices
+    setActiveIndices(prev => [...prev, nextIndex]);
+
+    // Remove the old image after it has faded out completely
+    setTimeout(() => {
+      setActiveIndices(prev => prev.filter(idx => idx !== currentIndex));
+    }, 200); // Match the opacity transition duration
+  }
   return (
     <div className='h-screen relative overflow-hidden'>
       <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20'>
         <img src='/ambient-light-logo.svg' width={450} alt="Logo"></img>
       </div>
-      
+      {/* Position the Slider on the right with padding */}
+      <div className='absolute top-1/2 -translate-y-1/2 right-2 z-40 p-4 hidden md:block'> 
+        <Slider 
+          films={sortedFilms}
+          currentIndex={currentIndex} 
+          slideTheImage={slideTheImage}
+        />
+      </div>
+      {/* Bottom slider for mobile */}
+      <div className='absolute bottom-0 left-0 right-0 z-40 p-4 md:hidden'> 
+        <Slider 
+          films={sortedFilms}
+          currentIndex={currentIndex} 
+          slideTheImage={slideTheImage}
+        />
+      </div>
       <div className='w-full h-full relative overflow-hidden'>
         {images.map((image, index) => {
           const isActive = index === currentIndex;
@@ -70,8 +97,6 @@ function Hero() {
           );
         })}
       </div>
-      
-      <MouseScroll/>
     </div>
   )
 }

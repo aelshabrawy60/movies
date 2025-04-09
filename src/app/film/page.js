@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import FilmCard from '@/components/FilmCard';
 import MenuButton from '@/components/MenuButton';
 import filmsData from '@/data/films.json';
+import AnimatedFilmCard from '@/components/AnimatedFilmCard';
 
 export default function FilmsPage() {
   const films = filmsData.films.map(film => ({
@@ -35,14 +36,8 @@ export default function FilmsPage() {
       <div className="px-4 sm:px-8 pb-8 sm:pb-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
           {films.map((film, index) => (
-            <motion.div
-              key={film.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-            >
-              <FilmCard film={film} />
-            </motion.div>
+            
+              <FilmCard key={index} film={film} />
           ))}
         </div>
       </div>

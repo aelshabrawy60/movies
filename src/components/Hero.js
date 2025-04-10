@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useState, useEffect } from 'react'
+import Image from 'next/image'
 import MouseScroll from './MouseScroll'
 import Slider from './Slider';
 import films from '../data/films.json';
@@ -11,6 +12,7 @@ function Hero() {
   
   const [currentIndex, setCurrentIndex] = useState(0);
   const [activeIndices, setActiveIndices] = useState([0]); // Track all visible images
+  const [loadedImages, setLoadedImages] = useState({}); // Track which images have loaded
   
   useEffect(() => {
     // Start the scaling effect immediately for the first image
@@ -50,7 +52,7 @@ function Hero() {
   return (
     <div className='h-screen relative overflow-hidden'>
       <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20'>
-        <img src='/ambient-light-logo.svg' width={450} alt="Logo"></img>
+        <Image src='/ambient-light-logo.svg' width={450} height={450} alt="Logo" priority />
       </div>
       {/* Position the Slider on the right with padding */}
       <div className='absolute top-1/2 -translate-y-1/2 right-2 z-40 p-4 hidden md:block'> 
@@ -84,14 +86,22 @@ function Hero() {
                 pointerEvents: isVisible ? 'auto' : 'none'
               }}
             >
-              <img 
-                src={image} 
-                className='w-full h-full object-cover'
+              <Image
+                src={image}
+                fill
+                sizes="100vw"
                 style={{
-                  transition: 'transform 7000ms ease-out',
-                  transform: isVisible ? 'scale(1.05)' : 'scale(1)'
+                  objectFit: 'cover',
+                  transition: 'all 7000ms ease-out',
+                  transform: isVisible ? 'scale(1.05)' : 'scale(1)',
+                  opacity: loadedImages[index] ? 1 : 0
                 }}
                 alt={`Background ${index + 1}`}
+                priority={index === 0}
+                unoptimized
+                onLoadingComplete={() => {
+                  setLoadedImages(prev => ({...prev, [index]: true}));
+                }}
               />
             </div>
           );

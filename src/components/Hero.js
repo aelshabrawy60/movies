@@ -7,7 +7,7 @@ import Slider from './Slider';
 import films from '../data/films.json';
 
 function Hero() {
-  const sortedFilms = [...films.films]
+  const sortedFilms = [...films.films].slice(0, 3);
   const images = sortedFilms.map(film => film.thumbnail);
   
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -55,20 +55,23 @@ function Hero() {
         <Image src='/ambient-light-logo.svg' width={450} height={450} alt="Logo" priority />
       </div>
       {/* Position the Slider on the right with padding */}
-      <div className='absolute top-1/2 -translate-y-1/2 right-2 z-40 p-4 hidden md:block'> 
+      <div className='absolute top-1/2 -translate-y-1/2 right-4 z-40 p-4 hidden md:block transition-transform duration-500 hover:translate-x-0 translate-x-2'> 
         <Slider 
           films={sortedFilms}
           currentIndex={currentIndex} 
           slideTheImage={slideTheImage}
         />
       </div>
-      {/* Bottom slider for mobile */}
-      <div className='absolute bottom-0 left-0 right-0 z-40 p-4 md:hidden'> 
-        <Slider 
-          films={sortedFilms}
-          currentIndex={currentIndex} 
-          slideTheImage={slideTheImage}
-        />
+      {/* Bottom slider for mobile - with gradient overlay */}
+      <div className='absolute bottom-0 left-0 right-0 z-40 md:hidden'> 
+        <div className='absolute inset-0 bg-gradient-to-t from-black/80 to-transparent pointer-events-none'></div>
+        <div className='relative p-4'>
+          <Slider 
+            films={sortedFilms}
+            currentIndex={currentIndex} 
+            slideTheImage={slideTheImage}
+          />
+        </div>
       </div>
       <div className='w-full h-full relative overflow-hidden'>
         {images.map((image, index) => {

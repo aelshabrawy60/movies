@@ -41,7 +41,7 @@ export default function FilmCard({ film }) {
         </div>
 
         {/* Title and Year */}
-        <h2 className="text-xl sm:text-2xl font-bold mb-1 sm:mb-2 group-hover:text-blue-400 transition-colors">
+        <h2 className="text-xl sm:text-2xl font-bold mb-1 sm:mb-2 transition-colors">
           {film.title}
           <span className="ml-2 text-lg font-normal text-gray-400">
             {film.year}

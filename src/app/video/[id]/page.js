@@ -20,7 +20,6 @@ export default function VideoClipPage({ params }) {
     // Other fields are unknown until password verification
     creator: "",
     views: "",
-    thumbnail: "",
     youtubeId: "",
     duration: "",
     otp: null, // Explicitly null initially

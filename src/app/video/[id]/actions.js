@@ -47,7 +47,7 @@ export async function getVideoWithPassword(videoId, password) {
         // --- Potentially fill placeholders if needed, or let VideoPlayer handle missing data ---
         creator: "Unknown Creator", // Placeholder - API doesn't provide this
         views: "N/A",             // Placeholder - API doesn't provide this
-        thumbnail: "/default-thumbnail.webp", // Placeholder - API doesn't provide this
+        thumbnail: result.data.video.thumbnail, // Placeholder - API doesn't provide this
         duration: "N/A",          // Placeholder - API doesn't provide this
       };
       return { data: completeVideoData }; // Return successful data structure

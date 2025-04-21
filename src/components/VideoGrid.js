@@ -81,7 +81,6 @@ export default function VideoGrid() {
               creator: "Ambient Light Film", // Default value
               views: 0, // Default value
               duration: '00:00', // Default value
-              thumbnail: `/thumbnails/${video.video_id}.jpg`, // Assumed path
               password: '' // Default value
             }}
             onViewStats={() => setSelectedVideo(video)}

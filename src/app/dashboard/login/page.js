@@ -140,21 +140,6 @@ function LoginPage() {
               <div><span className="text-gray-500">Password:</span> ambientlight@742025</div>
             </div>
           </div>
-          
-          {/* Forgot Password Link */}
-          <div className="mt-4 text-center">
-            <a href="#" className="text-blue-400 hover:text-blue-300 text-sm transition-colors duration-200">
-              Forgot your password?
-            </a>
-          </div>
-          
-          {/* Sign Up Option */}
-          <div className="mt-6 text-center text-sm text-gray-500">
-            Don't have an account?{' '}
-            <a href="#" className="text-blue-400 hover:text-blue-300 transition-colors duration-200">
-              Sign up
-            </a>
-          </div>
         </div>
       </div>
     </div>

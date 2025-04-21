@@ -29,6 +29,7 @@ export function VideoContainer({ video: initialVideo, getVideoAction }) {
     } else if (result.data) {
       // Success! Store the complete data and authenticate
       setCompleteVideoData(result.data);
+      console.log(result.data)
       setIsAuthenticated(true);
       // Optional: clear password field after success
       // setPassword('');

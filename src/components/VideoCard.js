@@ -1,4 +1,5 @@
 "use client"
+import Link from 'next/link';
 import React, { useState } from 'react';
 import { FaChartBar, FaPen, FaTrashAlt, FaEye, FaEllipsisV } from "react-icons/fa";
 
@@ -25,11 +26,13 @@ function VideoCard({ videoData, onPlay = () => {}, onViewStats = () => {}, onEdi
       <div className="relative rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
         {/* Thumbnail */}
         <div className="aspect-video bg-gray-900 relative overflow-hidden">
+          <Link href={`/video/${videoData.video_id}`} className="absolute inset-0">
           <img 
             src={videoData.thumbnail} 
             alt={`Thumbnail for ${videoData.title}`}
             className="w-full h-full object-cover"
           />
+          </Link>
           
           {/* More options menu - Always visible */}
           <div className="absolute top-3 right-3 z-10">

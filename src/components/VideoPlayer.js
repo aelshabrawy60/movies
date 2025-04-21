@@ -32,7 +32,7 @@ export default function VideoPlayer({ video }) {
           </>
         ) : (
           <iframe 
-            src={`https://player.vdocipher.com/v2/?otp=${video.otp}&playbackInfo=${video.playbackInfo}`}
+            src={`https://player.vdocipher.com/v2/?otp=${video.otp}&playbackInfo=${video.playbackInfo}&primaryColor=4245EF&autoplay=true`}
             title={video.title}
             className="w-full h-full border-0"
             allowFullScreen

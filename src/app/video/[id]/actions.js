@@ -45,7 +45,7 @@ export async function getVideoWithPassword(videoId, password) {
         // --- Mappings & Placeholders (if your VideoPlayer *requires* these exact names) ---
         youtubeId: result.data.video.video_id, // Map youtubeId if VideoPlayer component needs it
         // --- Potentially fill placeholders if needed, or let VideoPlayer handle missing data ---
-        creator: "Unknown Creator", // Placeholder - API doesn't provide this
+        creator: "Ambient light", // Placeholder - API doesn't provide this
         views: "N/A",             // Placeholder - API doesn't provide this
         thumbnail: result.data.video.thumbnail, // Placeholder - API doesn't provide this
         duration: "N/A",          // Placeholder - API doesn't provide this

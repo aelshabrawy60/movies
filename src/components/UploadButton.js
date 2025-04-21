@@ -1,12 +1,33 @@
-
 "use client"
 
 import { useState } from 'react';
+import { Router } from 'next/router';
+// If you are using Next.js App Router, you might prefer router.refresh()
+// import { useRouter } from 'next/navigation';
 
 import UploadModal from './UploadModal';
 
 export default function UploadButton() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  // Optional: If using Next.js App Router for a smoother refresh
+  // const router = useRouter();
+
+  // Define a handler function for closing the modal
+  const handleCloseAndRefresh = () => {
+    setIsModalOpen(false); // Close the modal first
+
+    // --- Option 1: Hard Refresh (Standard Browser Behavior) ---
+    // This reloads the entire page from the server.
+    window.location.reload();
+
+    // --- Option 2: Soft Refresh (Next.js App Router Recommended) ---
+    // If you are using the Next.js App Router, this is often preferred.
+    // It refetches data for the current route without losing client-side state
+    // for uncontrolled components and provides a smoother UX.
+    // Uncomment the line below and the `useRouter` import above if using this.
+    //router.refresh(); 
+  };
+
   return (
     <>
       <button
@@ -19,10 +40,11 @@ export default function UploadButton() {
         Upload Video
       </button>
 
-      <UploadModal 
+      <UploadModal
         isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
+        // Pass the new handler function to the onClose prop
+        onClose={handleCloseAndRefresh}
       />
     </>
   );
-  }
+}

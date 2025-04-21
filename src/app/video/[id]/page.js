@@ -4,7 +4,8 @@ import Navbar from '../../../components/Navbar';
 import { VideoContainer } from '@/components/VideoContainer'; // Assuming path is correct
 import { getVideoWithPassword } from './actions'; // Import the Server Action
 
-export default function VideoClipPage({ params }) {
+
+export default async function VideoClipPage({ params }) {
   const videoId = params.id;
 
   if (!videoId) {

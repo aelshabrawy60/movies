@@ -37,10 +37,7 @@ function LoginPage() {
         
         // Also store user data in cookies
         setCookie('userData', JSON.stringify(data.data.user), 30);
-        
-        console.log('Login successful', data);
-        alert('Login successful! Welcome ' + data.data.user.name);
-        
+                
         // Redirect example (uncomment to use):
         window.location.href = '/dashboard';
       } else {

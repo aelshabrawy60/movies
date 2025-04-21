@@ -32,11 +32,11 @@ export default function VideoPlayer({ video }) {
           </>
         ) : (
           <iframe 
-            src={`https://www.youtube.com/embed/${video.youtubeId}?autoplay=1&rel=0`}
+            src={`https://player.vdocipher.com/v2/?otp=${video.otp}&playbackInfo=${video.playbackInfo}`}
             title={video.title}
             className="w-full h-full border-0"
             allowFullScreen
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; encrypted-media"
             frameBorder="0"
           />
         )}

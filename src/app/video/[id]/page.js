@@ -1,36 +1,48 @@
-// VideoClipPage.jsx (Server Component)
+// app/videos/[id]/page.jsx (or your equivalent route)
 import Footer from '@/components/Footer';
 import Navbar from '../../../components/Navbar';
-import { VideoContainer } from '@/components/VideoContainer';
+import { VideoContainer } from '@/components/VideoContainer'; // Assuming path is correct
+import { getVideoWithPassword } from './actions'; // Import the Server Action
 
-const video = {
-    id: 5,
-    title: "Trianto appelomng termanati",
-    creator: "Fight Club",
-    views: "1.3M",
-    thumbnail: "/arze.webp",
-    youtubeId: "chyRpj-971o", 
-    duration: "4:05",
-    description: "Experience the tranquil sounds of rain falling in a dense forest. Perfect for relaxation, meditation, or as a soothing background while you work or study. Recorded in the pristine wilderness of the Pacific Northwest."
-}
+export default function VideoClipPage({ params }) {
+  const videoId = params.id;
 
-// Password validation function (server-side)
-async function verifyPassword(password) {
-  'use server'
-  // Replace with your actual password
-  const correctPassword = '123';
-  return password === correctPassword;
-}
+  if (!videoId) {
+    return <div>Invalid Video ID requested.</div>;
+  }
 
-export default function VideoClipPage() {
+  // Initial, incomplete video object. Only ID is strictly needed by the action.
+  // Add any other known details if available without a password.
+  const initialVideoData = {
+    id: videoId,
+    title: "Protected Video", // Placeholder title
+    description: "Enter the password to view the description and video.", // Placeholder description
+    // Other fields are unknown until password verification
+    creator: "",
+    views: "",
+    thumbnail: "",
+    youtubeId: "",
+    duration: "",
+    otp: null, // Explicitly null initially
+    playbackInfo: null // Explicitly null initially
+  };
+
   return (
     <div className="min-h-screen flex flex-col text-white">
-      <Navbar/>
+      <Navbar />
       <main className="w-full sm:px-4 sm:py-6 md:py-8 flex flex-col items-center flex-1">
         <div className="w-full max-w-5xl">
-          <VideoContainer video={video} verifyPassword={verifyPassword} />
+          {/*
+            Pass the initial (incomplete) data and the SERVER ACTION
+            that VideoContainer's handleSubmit will call.
+          */}
+          <VideoContainer
+            video={initialVideoData}
+            getVideoAction={getVideoWithPassword} // Pass the server action as a prop
+          />
         </div>
       </main>
+      {/* <Footer /> */}
     </div>
   );
 }

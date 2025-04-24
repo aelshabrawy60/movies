@@ -1,11 +1,12 @@
 "use client"
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { FaChartBar, FaPen, FaTrashAlt, FaEye, FaEllipsisV } from "react-icons/fa";
 
 function VideoCard({ videoData, onPlay = () => {}, onViewStats = () => {}, onEdit = (videoData) => {}, onDelete = () => {} }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+  const menuButtonRef = useRef(null);
+  
   // Close menu when clicking outside
   const closeMenu = (e) => {
     if (isMenuOpen) {
@@ -27,8 +28,8 @@ function VideoCard({ videoData, onPlay = () => {}, onViewStats = () => {}, onEdi
   };
 
   return (
-    // Remove the onClick from the parent div so we can control clicks more precisely
-    <div className="flex flex-col gap-3 cursor-pointer group">
+    // Parent container with relative positioning for absolute positioning context
+    <div className="flex flex-col gap-3 cursor-pointer group relative">
       {/* Video thumbnail container */}
       <div className="relative rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
         {/* Thumbnail - add onClick here instead */}
@@ -48,6 +49,7 @@ function VideoCard({ videoData, onPlay = () => {}, onViewStats = () => {}, onEdi
           <div className="absolute top-3 right-3 z-10">
             <div className="relative">
               <button
+                ref={menuButtonRef}
                 onClick={(e) => {
                   e.stopPropagation(); // Prevent card click
                   setIsMenuOpen(!isMenuOpen);
@@ -56,43 +58,6 @@ function VideoCard({ videoData, onPlay = () => {}, onViewStats = () => {}, onEdi
               >
                 <FaEllipsisV className="text-white" size={16} />
               </button>
-                
-              {/* Click-based dropdown menu */}
-              <div className={`absolute right-0 top-12 bg-white rounded-lg shadow-xl py-2 ${isMenuOpen ? 'block' : 'hidden'} min-w-[140px] z-20`}>
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation(); // Prevent card click
-                      onViewStats();
-                      setIsMenuOpen(false);
-                    }}
-                    className="w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center gap-2"
-                  >
-                    <FaChartBar size={14} />
-                    View Stats
-                  </button>
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation(); // Prevent card click
-                      onEdit(videoData);
-                      setIsMenuOpen(false);
-                    }}
-                    className="w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center gap-2"
-                  >
-                    <FaPen size={14} />
-                    Edit Video
-                  </button>
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation(); // Prevent card click
-                      onDelete();
-                      setIsMenuOpen(false);
-                    }}
-                    className="w-full px-4 py-2 text-sm text-red-600 hover:bg-gray-100 flex items-center gap-2"
-                  >
-                    <FaTrashAlt size={14} />
-                    Delete Video
-                  </button>
-              </div>
             </div>
           </div>
         </div>
@@ -113,11 +78,57 @@ function VideoCard({ videoData, onPlay = () => {}, onViewStats = () => {}, onEdi
             <span className="text-sm font-sm">{videoData.creator}</span>
             <span className="text-xs text-gray-400 flex items-center gap-1">
               <FaEye className="text-gray-400" size={12} />
-              10.2K views
+              {videoData.views_count} views
             </span>
           </div>
         </div>
       </div>
+
+      {/* Click-based dropdown menu */}
+      {isMenuOpen && (
+        <div 
+          className="absolute bg-white rounded-lg shadow-xl py-2 min-w-[140px] z-50"
+          style={{
+            top: '50px', // Position below the button
+            right: '10px'  // Align with the right side of the button
+          }}
+          onClick={(e) => e.stopPropagation()} // Prevent clicks from propagating
+        >
+          <button
+            onClick={(e) => {
+              e.stopPropagation(); // Prevent card click
+              onViewStats();
+              setIsMenuOpen(false);
+            }}
+            className="w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center gap-2"
+          >
+            <FaChartBar size={14} />
+            View Stats
+          </button>
+          <button
+            onClick={(e) => {
+              e.stopPropagation(); // Prevent card click
+              onEdit(videoData);
+              setIsMenuOpen(false);
+            }}
+            className="w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center gap-2"
+          >
+            <FaPen size={14} />
+            Edit Video
+          </button>
+          <button
+            onClick={(e) => {
+              e.stopPropagation(); // Prevent card click
+              onDelete();
+              setIsMenuOpen(false);
+            }}
+            className="w-full px-4 py-2 text-sm text-red-600 hover:bg-gray-100 flex items-center gap-2"
+          >
+            <FaTrashAlt size={14} />
+            Delete Video
+          </button>
+        </div>
+      )}
     </div>
   );
 }

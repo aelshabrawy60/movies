@@ -55,7 +55,6 @@ export function VideoContainer({ video: initialVideo, getVideoAction }) {
             <div className="flex items-center justify-between text-gray-300 mb-1">
               {/* Use placeholder/actual data as available in completeVideoData */}
               <span className="font-medium">{completeVideoData.creator || 'N/A'}</span>
-              <span className="text-sm bg-gray-800/80 px-2 py-1 rounded-full">{completeVideoData.duration || 'N/A'}</span>
             </div>
           </div>
           <div className="px-4 py-3 border-t border-gray-800">
@@ -79,7 +78,7 @@ export function VideoContainer({ video: initialVideo, getVideoAction }) {
 
   // If not authenticated, show the password form (UI remains the same)
   return (
-    <div className=" p-8 m-4 mt-4 rounded-lg shadow-2xl max-w-md my-auto md:mx-auto border border-gray-800/90 relative overflow-hidden">
+    <div className="p-8 m-4 mt-4 rounded-lg shadow-2xl max-w-md my-auto md:mx-auto border border-gray-800/90 relative overflow-hidden">
       <div className="absolute inset-0 opacity-80 z-0"></div>
       <div className="relative z-10">
         <h2 className="text-2xl font-bold mb-6 text-center text-white tracking-tight">Protected Content</h2>

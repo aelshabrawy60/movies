@@ -168,7 +168,6 @@ export default function VideoPlayer({ video }) {
             <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-2">{video.title}</h1>
             <div className="flex items-center text-gray-300 space-x-4 mb-2">
               <span>{video.creator}</span>
-              <span className="text-sm text-gray-400">{video.duration}</span>
             </div>
           </div>
         )}

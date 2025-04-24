@@ -52,7 +52,7 @@ function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen w-full flex items-center justify-center bg-gray-950 py-12">
+    <div className="min-h-screen p-4 w-full flex items-center justify-center bg-gray-950 py-12">
       <div className="p-8 rounded-lg shadow-2xl max-w-md w-full border border-gray-800/90 relative overflow-hidden bg-gray-950">
         {/* Subtle professional gradient overlay */}
         <div className="absolute inset-0 opacity-80 z-0 bg-gradient-to-br from-gray-900 to-gray-800"></div>

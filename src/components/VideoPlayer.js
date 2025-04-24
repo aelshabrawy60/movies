@@ -1,14 +1,140 @@
 // VideoPlayer.jsx (Client Component)
-'use client'
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { RiPlayLargeFill } from "react-icons/ri";
+import useVdocipher from '../hooks/use-vdocipher'
 
 export default function VideoPlayer({ video }) {
   const [isPlaying, setIsPlaying] = useState(false);
+  const { loadVideo, isAPIReady } = useVdocipher();
+  const videoContainerRef = useRef(null);
+  const [videoRef, setVideoRef] = useState(null);
+  const [player, setPlayer] = useState(null);
+  
+  // Track play time
+  const totalPlayedRef = useRef(0);
+  const totalCoveredRef = useRef(0);
+  const trackingIntervalRef = useRef(null);
   
   const handlePlay = () => {
     setIsPlaying(true);
   };
+
+  // Load the video when play is clicked
+  useEffect(() => {
+    if (isPlaying && isAPIReady && videoContainerRef.current && !videoRef) {
+      // Create and load the video
+      const iframe = loadVideo({
+        otp: video.otp,
+        playbackInfo: video.playbackInfo,
+        container: videoContainerRef.current,
+        configuration: {
+          autoplay: true,
+          primaryColor: "4245EF"
+        }
+      });
+      
+      setVideoRef(iframe);
+    }
+  }, [isPlaying, isAPIReady, video, loadVideo, videoRef]);
+
+  // Initialize player when video iframe is loaded
+  useEffect(() => {
+    if (!isAPIReady || !videoRef) return;
+    
+    try {
+      const vdoPlayer = new window.VdoPlayer(videoRef);
+      setPlayer(vdoPlayer);
+      
+      // Set up tracking interval
+      trackingIntervalRef.current = setInterval(async () => {
+        try {
+          totalPlayedRef.current = await vdoPlayer.api.getTotalPlayed();
+          totalCoveredRef.current = await vdoPlayer.api.getTotalCovered();
+        } catch (error) {
+          console.error("Error tracking video metrics:", error);
+        }
+      }, 1000);
+      
+      // Video event listeners
+      vdoPlayer.video.addEventListener("play", () => console.log("Video playing"));
+      vdoPlayer.video.addEventListener("pause", () => console.log("Video paused"));
+      vdoPlayer.video.addEventListener("ended", () => {
+        console.log("Video ended");
+        sendTrackingData();
+      });
+      
+    } catch (error) {
+      console.error("Error initializing player:", error);
+    }
+    
+    return () => {
+      if (trackingIntervalRef.current) {
+        clearInterval(trackingIntervalRef.current);
+      }
+      
+      // Send tracking data when component unmounts
+      if (totalPlayedRef.current > 0) {
+        sendTrackingData();
+      }
+    };
+  }, [videoRef, isAPIReady]);
+  
+  // Function to send tracking data to API
+  const sendTrackingData = async () => {
+    if (totalPlayedRef.current <= 0 && totalCoveredRef.current <= 0) return;
+    
+    try {
+      const response = await fetch('/api/track-video-time', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          videoId: video.id,
+          totalPlayed: totalPlayedRef.current,
+          totalCovered: totalCoveredRef.current
+        })
+      });
+      
+      if (!response.ok) {
+        throw new Error(`Error: ${response.status}`);
+      }
+      
+      console.log("Tracking data sent:", {
+        videoId: video.id, 
+        totalPlayed: totalPlayedRef.current, 
+        totalCovered: totalCoveredRef.current
+      });
+    } catch (error) {
+      console.error("Failed to send tracking data:", error);
+    }
+  };
+
+  // Handle page unload/navigation
+  useEffect(() => {
+    const handleBeforeUnload = () => {
+      if (trackingIntervalRef.current) {
+        clearInterval(trackingIntervalRef.current);
+      }
+      
+      // Use sendBeacon for more reliable data transmission during page unload
+      if (navigator.sendBeacon && totalPlayedRef.current > 0) {
+        const blob = new Blob([JSON.stringify({
+          videoId: video.id,
+          totalPlayed: totalPlayedRef.current,
+          totalCovered: totalCoveredRef.current
+        })], {type: 'application/json'});
+        
+        navigator.sendBeacon('/api/track-video-time', blob);
+      }
+    };
+    
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, [video.id]);
 
   return (
     <div className="relative sm:rounded-xl md:rounded-2xl sm:overflow-hidden shadow-lg sm:shadow-xl md:shadow-2xl ring-1 ring-white/10">
@@ -31,14 +157,10 @@ export default function VideoPlayer({ video }) {
             </div>
           </>
         ) : (
-          <iframe 
-            src={`https://player.vdocipher.com/v2/?otp=${video.otp}&playbackInfo=${video.playbackInfo}&primaryColor=4245EF&autoplay=true`}
-            title={video.title}
+          <div 
+            ref={videoContainerRef} 
             className="w-full h-full border-0"
-            allowFullScreen
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; encrypted-media"
-            frameBorder="0"
-          />
+          ></div>
         )}
         
         {!isPlaying && (

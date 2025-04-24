@@ -13,7 +13,7 @@ export default function Modal({ isOpen, onClose, children }) {
       
       {/* Modal */}
       <div className="flex min-h-full items-center justify-center p-4">
-        <div className="relative w-full max-w-lg transform overflow-hidden rounded-lg bg-gray-900 shadow-xl transition-all border border-gray-700">
+        <div className="relative w-full max-w-3xl transform overflow-hidden rounded-lg bg-gray-900 shadow-xl transition-all border border-gray-700">
           {/* Content */}
           <div className="py-6 px-4 md:p-6 text-gray-100">
             {children}

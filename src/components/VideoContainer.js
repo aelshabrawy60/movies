@@ -1,15 +1,14 @@
-// components/VideoContainer.jsx (or wherever it lives)
 'use client'
 
 import { useState } from 'react';
 import VideoPlayer from '@/components/VideoPlayer';
 
-// Renamed prop 'verifyPassword' to 'getVideoAction' for clarity
 export function VideoContainer({ video: initialVideo, getVideoAction }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  
   // State to hold the *complete* video data once fetched
   const [completeVideoData, setCompleteVideoData] = useState(null);
 

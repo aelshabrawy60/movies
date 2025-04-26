@@ -3,6 +3,7 @@ import VideoCard from "./VideoCard";
 import StatsModal from "./StatsModal";
 import EditVideoModal from "./EditVideoModal";
 import Modal from "./Modal"; // Assuming the Modal component is reusable
+import ShareModal from './ShareModal';
 
 // Helper function to get the auth token from cookies
 function getAuthToken() {
@@ -83,6 +84,9 @@ export default function VideoGrid() {
   const [deletingVideo, setDeletingVideo] = useState(null);
   const [isDeleting, setIsDeleting] = useState(false);
   const [deleteError, setDeleteError] = useState(null);
+  const [sharingVideo, setSharingVideo] = useState(null);
+
+
   
   useEffect(() => {
     fetchVideos();
@@ -214,9 +218,17 @@ export default function VideoGrid() {
             onViewStats={() => setSelectedVideo(video)}
             onEdit={() => setEditingVideo(video)}
             onDelete={() => setDeletingVideo(video)}
+            onShare={() => setSharingVideo(video)}
           />
         ))}
       </div>
+
+      <ShareModal
+        isOpen={!!sharingVideo}
+        onClose={() => setSharingVideo(null)}
+        video={sharingVideo || {}}
+      />
+
 
       <StatsModal
         isOpen={!!selectedVideo}

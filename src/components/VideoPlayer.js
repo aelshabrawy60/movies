@@ -29,7 +29,9 @@ export default function VideoPlayer({ video }) {
         container: videoContainerRef.current,
         configuration: {
           autoplay: true,
-          primaryColor: "4245EF"
+          primaryColor: "4245EF",
+          controls: true,
+          showQualitySelector: true,
         }
       });
       
@@ -161,15 +163,6 @@ export default function VideoPlayer({ video }) {
             ref={videoContainerRef} 
             className="w-full h-full border-0"
           ></div>
-        )}
-        
-        {!isPlaying && (
-          <div className="absolute bottom-0 w-full p-4 md:p-6 text-left hidden md:block">
-            <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-2">{video.title}</h1>
-            <div className="flex items-center text-gray-300 space-x-4 mb-2">
-              <span>{video.creator}</span>
-            </div>
-          </div>
         )}
       </div>
     </div>

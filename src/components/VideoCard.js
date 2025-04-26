@@ -1,9 +1,10 @@
 "use client"
+import { Share } from 'lucide-react';
 import Link from 'next/link';
 import React, { useState, useRef } from 'react';
-import { FaChartBar, FaPen, FaTrashAlt, FaEye, FaEllipsisV } from "react-icons/fa";
+import { FaChartBar, FaPen, FaTrashAlt, FaEye, FaEllipsisV, FaShare } from "react-icons/fa";
 
-function VideoCard({ videoData, onPlay = () => {}, onViewStats = () => {}, onEdit = (videoData) => {}, onDelete = () => {} }) {
+function VideoCard({ videoData, onPlay = () => {}, onViewStats = () => {}, onEdit = (videoData) => {}, onDelete = () => {}, onShare = () => {} }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuButtonRef = useRef(null);
   
@@ -94,6 +95,18 @@ function VideoCard({ videoData, onPlay = () => {}, onViewStats = () => {}, onEdi
           }}
           onClick={(e) => e.stopPropagation()} // Prevent clicks from propagating
         >
+          <button
+            onClick={(e) => {
+              e.stopPropagation(); // Prevent card click
+              onShare();
+              setIsMenuOpen(false);
+            }}
+            className="w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center gap-2"
+          >
+            <FaShare size={14} />
+            Share
+          </button>
+
           <button
             onClick={(e) => {
               e.stopPropagation(); // Prevent card click

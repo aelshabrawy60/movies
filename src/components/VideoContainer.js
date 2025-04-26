@@ -67,6 +67,13 @@ export function VideoContainer({ video: initialVideo, getVideoAction }) {
         {/* Video Description (Desktop) - Use complete data */}
         <div className="mt-3 md:mt-5">
           <div className="p-3 p-md-6 sm:p-4 bg-gray-800/50 rounded-lg hidden md:block">
+            <div className="w-full text-left hidden md:block">
+              <h2 className="text-xl md:text-xl lg:text-2xl font-bold mb-2">{completeVideoData.title}</h2>
+              <div className="flex items-center text-gray-300 space-x-4 mb-2">
+                <span>{completeVideoData.creator}</span>
+              </div>
+            </div>
+        
             <div className="text-sm sm:text-base text-gray-200">
               <p>{completeVideoData.description}</p>
             </div>

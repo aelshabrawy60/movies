@@ -143,7 +143,7 @@ export default function EditVideoModal({ isOpen, onClose, video, onSave }) {
         {/* Video Link Section */}
         {videoUrl && (
           <div className="pt-2">
-             <label className="block text-sm font-medium text-gray-300 mb-1">
+            <label className="block text-sm font-medium text-gray-300 mb-1">
               Shareable Video Link
             </label>
             <div className="flex items-center space-x-2">

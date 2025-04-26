@@ -1,6 +1,4 @@
 "use client"
-import { Share } from 'lucide-react';
-import Link from 'next/link';
 import React, { useState, useRef } from 'react';
 import { FaChartBar, FaPen, FaTrashAlt, FaEye, FaEllipsisV, FaShare } from "react-icons/fa";
 

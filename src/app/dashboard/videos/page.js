@@ -9,17 +9,14 @@ import Sidebar from '@/components/Sidebar'
 
 function DashboardPage() {
   
-  const router = useRouter()
-  useEffect(() => {
-    router.replace('/dashboard/videos')
-
-  }, [])
-
-  
-
   return (
     <>
-      
+        <div className='p-8 space-y-8 w-full'>
+          <div className='flex justify-end md:justify-start'>
+            <UploadButton />
+          </div>
+          <VideoGrid />
+        </div>
     </>
   )
 }

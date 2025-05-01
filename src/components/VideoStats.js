@@ -23,7 +23,7 @@ export default function VideoStats({ stats }) {
                 <div className="flex justify-between items-center">
                   <CountryFlag country={view.country || 'Unknown'} />
                   <div className="text-gray-300 text-sm">
-                    {view.date}
+                    {formatUTCToLocal(view.date)}
                   </div>
                 </div>
 
@@ -52,4 +52,21 @@ export default function VideoStats({ stats }) {
       </div>
     </div>
   );
+}
+
+function formatUTCToLocal(dateStr) {
+  // Parse the string as if it's in GMT+0
+  const [datePart, timePart, modifier] = dateStr.match(/(\d+\/\d+\/\d+), (\d+:\d+:\d+) (AM|PM)/).slice(1);
+  const [month, day, year] = datePart.split('/').map(Number);
+  const [hours, minutes, seconds] = timePart.split(':').map(Number);
+  
+  let hour = hours;
+  if (modifier === 'PM' && hour !== 12) hour += 12;
+  if (modifier === 'AM' && hour === 12) hour = 0;
+
+  // Create a UTC date
+  const utcDate = new Date(Date.UTC(year, month - 1, day, hour, minutes, seconds));
+  
+  // Convert to local string
+  return utcDate.toLocaleString();
 }

@@ -20,7 +20,7 @@ export default function StatsModal({ isOpen, onClose, video }) {
       
       // Get the auth token from cookies
       const authToken = getCookie('authToken');
-      
+
       const response = await fetch(`https://api.ambientlightfilm.net/api/videos/${videoId}/stats`, {
         headers: {
           'Authorization': `Bearer ${authToken}`

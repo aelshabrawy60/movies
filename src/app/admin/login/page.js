@@ -196,15 +196,6 @@ function LoginPage() {
                   ) : 'Log In'}
                 </button>
               </form>
-              
-              {/* Helpful testing information */}
-              <div className="mt-6 p-3 bg-gray-800/50 rounded-md border border-gray-700/50">
-                <p className="text-xs text-gray-400 mb-1">For testing, use:</p>
-                <div className="text-xs text-gray-300">
-                  <div><span className="text-gray-500">Email:</span> admin@ambientlight.com</div>
-                  <div><span className="text-gray-500">Password:</span> ambientlight@742025</div>
-                </div>
-              </div>
             </>
           ) : (
             // OTP Verification Form

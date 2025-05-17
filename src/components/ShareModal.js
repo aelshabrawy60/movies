@@ -146,14 +146,14 @@ export default function ShareModal({ isOpen, onClose, video, onSave }) {
           <div className="bg-gray-800 p-4 rounded-lg mb-6">
             <h3 className="text-lg font-semibold text-white mb-3">Generate New Link</h3>
             <div className="flex items-center mb-4">
-              <label className="text-gray-300 mr-3">Link Duration (minutes):</label>
+              <label className="text-gray-300 mr-3">Link Duration (hours):</label>
               <div className="flex-1">
                 <input 
                   type="number" 
                   value={linkDuration} 
                   onChange={handleDurationChange}
                   className="bg-gray-700 text-white rounded px-3 py-2 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 w-full"
-                  placeholder="Enter minutes"
+                  placeholder="Enter hours"
                 />
                 {durationError && (
                   <p className="text-red-400 text-sm mt-1">{durationError}</p>
